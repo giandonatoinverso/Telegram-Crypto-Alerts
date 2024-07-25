@@ -3,14 +3,14 @@ from os.path import isdir, join, dirname, abspath, isfile, exists
 
 
 """Alert Handler Configuration"""
-CEX_POLLING_PERIOD = 10  # Delay for the CEX alert handler to pull prices and check alert conditions (in seconds)
-TECHNICAL_POLLING_PERIOD = 5  # Delay for the technical alert handler check technical alert conditions (in seconds)
+CEX_POLLING_PERIOD = 60  # Delay for the CEX alert handler to pull prices and check alert conditions (in seconds)
+TECHNICAL_POLLING_PERIOD = 60  # Delay for the technical alert handler check technical alert conditions (in seconds)
 OUTPUT_VALUE_PRECISION = 3
 SIMPLE_INDICATORS = ['PRICE']
 SIMPLE_INDICATOR_COMPARISONS = ['ABOVE', 'BELOW', 'PCTCHG', '24HRCHG']
 
 """Telegram Handler Configuration"""
-MAX_ALERTS_PER_USER = 10  # Integer or None (Should be set in a static configuration file)
+MAX_ALERTS_PER_USER = None  # Integer or None (Should be set in a static configuration file)
 
 """BINANCE DATA CONFIG"""
 BINANCE_PRICE_URL_GLOBAL = 'https://api.binance.com/api/v3/ticker?symbol={}&windowSize={}'  # (e.x. BTCUSDT, 1d)
