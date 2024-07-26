@@ -39,16 +39,16 @@ class CEXAlertProcess(BaseAlertProcess):
         alerts_database = configuration.load_alerts()
         config = configuration.load_config()
 
-        do_update = False  # If any changes are made, update the database
+        #do_update = False  # If any changes are made, update the database
         post_queue = []
         for pair in alerts_database.copy().keys():
 
-            remove_queue = []
+            #remove_queue = []
             for alert in alerts_database[pair]:
-                if alert['alerted']:
-                    remove_queue.append(alert)
-                    do_update = True  # Since the alert needs to be removed from the database, signal do_update
-                    continue
+                #if alert['alerted']:
+                    #remove_queue.append(alert)
+                    #do_update = True  # Since the alert needs to be removed from the database, signal do_update
+                    #continue
 
                 if alert['type'] == "s":
                     condition, value, post_string = self.get_simple_indicator(pair, alert)
@@ -56,15 +56,15 @@ class CEXAlertProcess(BaseAlertProcess):
                     if condition:  # If there is a condition satisfied
                         post_queue.append((post_string, pair))
                         alert['alerted'] = True
-                        do_update = True  # Since the alert needs to be updated in the database, signal do_update
+                        #do_update = True  # Since the alert needs to be updated in the database, signal do_update
 
-            for item in remove_queue:
-                alerts_database[pair].remove(item)
-                if len(alerts_database[pair]) == 0:
-                    alerts_database.pop(pair)
+            #for item in remove_queue:
+                #alerts_database[pair].remove(item)
+                #if len(alerts_database[pair]) == 0:
+                    #alerts_database.pop(pair)
 
-        if do_update:
-            configuration.update_alerts(alerts_database)
+        #if do_update:
+            #configuration.update_alerts(alerts_database)
 
         if len(post_queue) > 0:
             self.polling = False
